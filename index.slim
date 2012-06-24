@@ -5,9 +5,9 @@ html
   body
     h1= @title
     markdown:
-      Subscribe to an Etsy search (or shop) by RSS (strictly speaking, Atom).
+      Subscribe to an Etsy search by RSS (strictly speaking, Atom).
 
-      Run a search on Etsy (or visit a shop), then replace `www.etsy.com` with `#{request.host_with_port}` in the URL. That's your RSS feed.
+      Run a search on Etsy, then replace `www.etsy.com` with `#{request.host_with_port}` in the URL. That's your RSS feed.
 
       So if you searched for vintage "octopus", you would change <code>http://<strong>www.etsy.com</strong>/search/vintage?q=octopus</code> to <code>http://<strong>#{request.host_with_port}</strong>/search/vintage?q=octopus</code>.
 
@@ -16,5 +16,7 @@ html
       <a href="javascript:location.href=location.href.replace('www.etsy.com', '#{request.host_with_port}');">Etsy RSS</a>
 
       You can bookmark it (perhaps in the bookmarks bar of your browser), then click that bookmark when you're in an Etsy search or shop.
+
+      Do you want feeds for a shop or someone's public favorites? [Etsy has those already.](http://www.etsy.com/help/article/100)
 
       By [Henrik Nyh](http://henrik.nyh.se). [View source](http://github.com/henrik/etsy-rss).

@@ -7,7 +7,7 @@ require "./generator"
 
 set :views, -> { root }
 
-TITLE = "Etsy RSS feeds"
+TITLE = "Etsy search RSS feeds"
 
 get '/' do
   @title = TITLE
