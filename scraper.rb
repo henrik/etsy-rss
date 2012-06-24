@@ -18,10 +18,6 @@ class Scraper
 
   private
 
-  def url
-    "http://www.etsy.com#{fixed_path}"
-  end
-
   def get_title
     @doc.css("title").text
   end
@@ -51,7 +47,11 @@ class Scraper
     end
   end
 
-  def fixed_path
+  def url
+    "http://www.etsy.com#{path}"
+  end
+
+  def path
     path = @path.dup
 
     # Always order by date.
