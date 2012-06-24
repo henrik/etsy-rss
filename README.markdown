@@ -1,4 +1,4 @@
-# Etsy RSS feeds
+# Etsy search RSS feeds
 
 Ruby script that provides Atom (RSS, kind of) feeds from Etsy searches.
 
