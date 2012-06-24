@@ -4,6 +4,7 @@ class Generator
   def initialize(data, opts)
     @data = data
     @name = opts[:name]
+    @root = opts[:root]
     @url  = opts[:url]
   end
 
@@ -14,17 +15,20 @@ class Generator
       feed.title     @data[:title]
       feed.id        @data[:url]
       feed.link      href: @data[:url]
+      feed.link      href: @url, rel: "self"
       feed.updated   updated_at.iso8601
       feed.author    { |a| a.name @name }
-      feed.generator @name, uri: @url
+      feed.generator @name, uri: @root
       feed.icon      "http://www.etsy.com/images/favicon.ico"
 
-      @data[:items].each do |item|
+      @data[:items].each_with_index do |item, index|
+        unique_time = item[:time] + index
+
         feed.entry do |entry|
-          entry.id      item[:id]
+          entry.id      item[:url]
           entry.title   item[:title]
           entry.link    href: item[:url]
-          entry.updated item[:time].iso8601
+          entry.updated unique_time.iso8601
           entry.content content(item), type: "html"
         end
       end

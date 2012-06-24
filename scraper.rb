@@ -29,7 +29,6 @@ class Scraper
   def get_items
     @doc.css(".listings-listview .listing-card").map do |card|
       {
-        id:    card[:id],
         url:   card.at(".listing-thumb")[:href],
         title: card.at(".listing-thumb")[:title],
         img:   card.at(".listing-thumb img")[:src].sub(/il_\d+x\d+/, 'il_570xN'),

@@ -16,7 +16,10 @@ end
 
 get %r{/(.+)} do
   data = Scraper.new(request.fullpath).scrape
-  url  = "http://#{request.host_with_port}"
-  atom = Generator.new(data, name: TITLE, url: url).to_atom
+  root = "http://#{request.host_with_port}"
+  url  = request.url
+  atom = Generator.new(data, name: TITLE, root: root, url: url).to_atom
+
+  content_type "application/xml+atom"
   atom
 end
