@@ -20,6 +20,6 @@ get %r{/(.+)} do
   url  = request.url
   atom = Generator.new(data, name: TITLE, root: root, url: url).to_atom
 
-  content_type "application/xml+atom"
+  content_type "application/atom+xml"
   atom
 end
