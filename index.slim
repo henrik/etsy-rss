@@ -11,12 +11,22 @@ html
 
       So if you searched for "octopus" in vintage, you would change <code>http://<strong>www.etsy.com</strong>/search/vintage?q=octopus</code> to <code>http://<strong>#{request.host_with_port}</strong>/search/vintage?q=octopus</code>.
 
+      ## Bookmarklets
+
       This bookmarklet changes the URL for you:
 
       <a href="javascript:location.href=location.href.replace('www.etsy.com', '#{request.host_with_port}');">Etsy RSS</a>
 
-      You can bookmark it (perhaps in the bookmarks bar of your browser), then click that bookmark when you're in an Etsy search.
+      This bookmarklet gives you a URL to copy and paste in a RSS reader app:
+
+      <a href="javascript:prompt('Take it! It\'s yours!', location.href.replace('www.etsy.com', '#{request.host_with_port}'));">Etsy RSS</a>
+
+      You can bookmark either (perhaps in the bookmarks bar of your browser), then click that bookmark when you're in an Etsy search.
+
+      ## Other feeds
 
       Do you want feeds for a shop or someone's public favorites? [Etsy has those already.](http://www.etsy.com/help/article/100)
+
+      ## More
 
       By [Henrik Nyh](http://henrik.nyh.se). [View source](http://github.com/henrik/etsy-rss).
