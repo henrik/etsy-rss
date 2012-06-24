@@ -3,6 +3,7 @@ GEM
   specs:
     builder (3.0.0)
     kgio (2.6.0)
+    newrelic_rpm (3.3.3)
     nokogiri (1.5.2)
     rack (1.4.1)
     rack-protection (1.2.0)
@@ -28,6 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   builder
+  newrelic_rpm
   nokogiri
   rdiscount
   sinatra
