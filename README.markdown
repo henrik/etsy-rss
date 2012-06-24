@@ -7,7 +7,6 @@ Sinatra app using Nokogiri.
 
 ## TODO
 
-* [4x performance with Unicorn](http://blog.railsonfire.com/2012/05/06/Unicorn-on-Heroku.html)
 * Caching?
 
 ## Credits and license

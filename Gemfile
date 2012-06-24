@@ -5,3 +5,7 @@ gem "slim"
 gem "rdiscount"
 gem "nokogiri"
 gem "builder"
+
+group :production do
+  gem "unicorn"
+end
