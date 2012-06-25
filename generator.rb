@@ -21,14 +21,12 @@ class Generator
       feed.generator @name, uri: @root
       feed.icon      "http://www.etsy.com/images/favicon.ico"
 
-      @data[:items].each_with_index do |item, index|
-        unique_time = item[:time] + index
-
+      @data[:items].each do |item|
         feed.entry do |entry|
           entry.id      item[:url]
           entry.title   item[:title]
           entry.link    href: item[:url]
-          entry.updated unique_time.iso8601
+          entry.updated item[:time].iso8601
           entry.content content(item), type: "html"
         end
       end
