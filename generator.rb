@@ -23,7 +23,7 @@ class Generator
 
       @data[:items].each do |item|
         feed.entry do |entry|
-          entry.id      item[:url]
+          entry.id      "http://www.etsy.com/listing/#{item[:id]}"
           entry.title   item[:title]
           entry.link    href: item[:url]
           entry.updated item[:time].iso8601
