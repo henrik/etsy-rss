@@ -5,6 +5,8 @@ gem "slim"
 gem "rdiscount"
 gem "nokogiri"
 gem "builder"
+gem "dalli"
+gem "rack-cache"
 
 group :production do
   gem "unicorn"
