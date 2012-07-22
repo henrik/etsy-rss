@@ -19,7 +19,7 @@ html
 
       This bookmarklet gives you a URL to copy and paste in a RSS reader app:
 
-      <a href="javascript:prompt('Take it! It\'s yours!', location.href.replace('www.etsy.com', '#{request.host_with_port}'));">Etsy RSS</a>
+      <a href="javascript:prompt('Take it! It\'s yours!', location.href.replace('www.etsy.com', '#{request.host_with_port}')); return false">Etsy RSS</a>
 
       You can bookmark either (perhaps in the bookmarks bar of your browser), then click that bookmark when you're in an Etsy search.
 
