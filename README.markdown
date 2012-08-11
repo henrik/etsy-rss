@@ -2,9 +2,9 @@
 
 Ruby script that provides Atom (RSS, kind of) feeds from Etsy searches:
 
-<http://etsy-rss.herokuapp.com>
+<http://etsy.nyh.name>
 
-Implemented as a Sinatra app using Nokogiri and Builder, deployed to Heroku.
+Sinatra app using Nokogiri and Builder, deployed to Heroku.
 
 
 ## Credits and license
