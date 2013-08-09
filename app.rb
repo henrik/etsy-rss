@@ -1,6 +1,6 @@
 require "rubygems"
 require "bundler"
-Bundler.require :default, (ENV['RACK_ENV'] || "development").to_sym
+Bundler.require :default, (ENV["RACK_ENV"] || "development").to_sym
 
 require "./scraper"
 require "./generator"
@@ -9,7 +9,7 @@ set :views, -> { root }
 
 TITLE = "Etsy search RSS feeds"
 
-get '/' do
+get "/" do
   @title = TITLE
   slim :index
 end
