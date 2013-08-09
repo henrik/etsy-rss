@@ -24,7 +24,7 @@ class Generator
       feed.icon      "http://www.etsy.com/images/favicon.ico"
 
       @data[:items].each do |item|
-        item_url = URI.join(BASE_URL, url).to_s
+        item_url = URI.join(BASE_URL, item[:url]).to_s
 
         feed.entry do |entry|
           entry.id      "http://www.etsy.com/listing/#{item[:id]}"
