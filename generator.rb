@@ -1,6 +1,8 @@
 require "builder"
 
 class Generator
+  BASE_URL = "http://www.etsy.com/"
+
   def initialize(data, opts)
     @data = data
     @name = opts[:name]
@@ -22,12 +24,14 @@ class Generator
       feed.icon      "http://www.etsy.com/images/favicon.ico"
 
       @data[:items].each do |item|
+        item_url = URI.join(BASE_URL, url).to_s
+
         feed.entry do |entry|
           entry.id      "http://www.etsy.com/listing/#{item[:id]}"
           entry.title   item[:title]
-          entry.link    href: item[:url]
+          entry.link    href: item_url
           entry.updated item[:time].iso8601
-          entry.content content(item), type: "html"
+          entry.content content(item, item_url), type: "html"
         end
       end
     end
@@ -39,10 +43,10 @@ class Generator
     @data[:items].map { |i| i[:time] }.max || Time.now
   end
 
-  def content(item)
+  def content(item, item_url)
     <<-HTML
       <p>
-        <a href="#{item[:url]}">
+        <a href="#{item_url}">
           <img src="#{item[:img]}" alt="">
         </a>
       </p>
