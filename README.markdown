@@ -7,6 +7,16 @@ Ruby script that provides Atom (RSS, kind of) feeds from Etsy searches:
 Sinatra app using Nokogiri and Builder, deployed to Heroku.
 
 
+## Setup
+
+If you want to set up a new instance on Heroku for some reason, it goes something like this:
+
+* Clone this repo.
+* `heroku create some-name`
+* `heroku addons:add memcachier  # free`
+* `git push heroku`
+
+
 ## Credits and license
 
 By [Henrik Nyh](http://henrik.nyh.se/) under the MIT license:
