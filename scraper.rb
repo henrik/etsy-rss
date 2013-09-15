@@ -37,6 +37,8 @@ class Scraper
 
   def parse_time(string)
     case string
+    when /Just now/
+      Time.now
     when /(\d+) minutes? ago/
       Time.now - ($1.to_i * 60)
     when /(\d+) hours? ago/
