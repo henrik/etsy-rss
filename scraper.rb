@@ -24,9 +24,15 @@ class Scraper
 
   def get_items
     @doc.css(".listings-listview .listing-card").map do |card|
+      url = card.at(".listing-thumb")[:href]
+
+      # Etsy doesn't properly escape the ga_facet parameter.
+      url.gsub!(" ", "+")
+      url.gsub!('"', "%22")
+
       {
         id:    card[:id].gsub(/\D/, '').to_i,
-        url:   card.at(".listing-thumb")[:href],
+        url:   url,
         title: card.at(".listing-thumb")[:title],
         img:   card.at(".listing-thumb img")[:src].sub(/il_\d+x\d+/, 'il_570xN'),
         time:  parse_time(card.at(".listing-date").text.strip),
