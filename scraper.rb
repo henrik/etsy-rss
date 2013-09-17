@@ -3,6 +3,8 @@ require "time"
 require "nokogiri"
 
 class Scraper
+  class PageNotFound < StandardError; end
+
   def initialize(path)
     @path = path
   end
@@ -14,6 +16,12 @@ class Scraper
       url:   url,
       items: get_items
     }
+  rescue OpenURI::HTTPError => e
+    if e.message == "404 Not Found"
+      raise PageNotFound
+    else
+      raise
+    end
   end
 
   private
