@@ -31,7 +31,7 @@ class Scraper
   end
 
   def get_items
-    @doc.css(".listings-listview .listing-card").map do |card|
+    @doc.css(".listings .listing-card").map do |card|
       url = card.at(".listing-thumb")[:href]
 
       # Etsy doesn't properly escape the ga_facet parameter.
@@ -43,24 +43,9 @@ class Scraper
         url:   url,
         title: card.at(".listing-thumb")[:title],
         img:   card.at(".listing-thumb img")[:src].sub(/il_\d+x\d+/, 'il_570xN'),
-        time:  parse_time(card.at(".listing-date").text.strip),
+        time:  Time.now,  # Can't determine without loading each item page :/
         price: card.at(".listing-price").text.strip
       }
-    end
-  end
-
-  def parse_time(string)
-    case string
-    when /Just now/
-      Time.now
-    when /(\d+) minutes? ago/
-      Time.now - ($1.to_i * 60)
-    when /(\d+) hours? ago/
-      Time.now - ($1.to_i * 60 * 60)
-    when /(\d+) days? ago/
-      Time.now - ($1.to_i * 60 * 60 * 24)
-    else  # E.g. "May 30, 2012"
-      Time.parse(string)
     end
   end
 
@@ -79,10 +64,6 @@ class Scraper
     # Always page 1.
     path.sub!(/[&?]page=\d*/, '')
     path += "&page=1"
-
-    # Ensure a consistent format, with more details.
-    path.sub!(/[&?]view_type=\w*/, '')
-    path += "&view_type=list"
 
     path
   end
