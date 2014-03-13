@@ -10,7 +10,7 @@ class Scraper
   end
 
   def scrape
-    @doc = Nokogiri::HTML(open(url))
+    @doc = Nokogiri::HTML(open(url, :allow_redirections => :all))
     {
       title: get_title,
       url:   url,
