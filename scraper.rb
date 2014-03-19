@@ -34,6 +34,10 @@ class Scraper
     @doc.css(".listings .listing-card").map do |card|
       url = card.at(".listing-thumb")[:href]
 
+      unless url
+        raise "No URL in card?! card HTML: #{card}"
+      end
+
       # Etsy doesn't properly escape the ga_facet parameter.
       url.gsub!(" ", "+")
       url.gsub!('"', "%22")
