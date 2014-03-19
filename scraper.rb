@@ -31,7 +31,8 @@ class Scraper
   end
 
   def get_items
-    @doc.css(".listings .listing-card").map do |card|
+    # "#primary > .listings" to exclude sponsored listings.
+    @doc.css("#primary > .listings .listing-card").map do |card|
       url = card.at(".listing-thumb")[:href]
 
       unless url
