@@ -42,6 +42,10 @@ class Scraper
       url.gsub!(" ", "+")
       url.gsub!('"', "%22")
 
+      unless card[:id]
+        raise "No id for card?! card HTML: #{card}"
+      end
+
       {
         id:    card[:id].gsub(/\D/, '').to_i,
         url:   url,
