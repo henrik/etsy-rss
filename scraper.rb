@@ -35,12 +35,10 @@ class Scraper
     @doc.css("#primary > .listings .listing-card").map do |card|
       next if card[:class].include?("house-ad")  # Skip unparsable ads.
 
-      url = card.at(".listing-thumb")[:href]
+      link = card.at("a.listing-thumb")
+      next unless link  # "No longer available" items without links sometimes appear.
 
-      # DEBUG
-      unless url
-        raise "No URL in card?! card HTML: #{card}"
-      end
+      url = link[:href]
 
       # Etsy doesn't properly escape the ga_facet parameter.
       url.gsub!(" ", "+")
