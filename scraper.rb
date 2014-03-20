@@ -33,8 +33,11 @@ class Scraper
   def get_items
     # "#primary > .listings" to exclude sponsored listings.
     @doc.css("#primary > .listings .listing-card").map do |card|
+      next if card[:class].include?("house-ad")  # Skip unparsable ads.
+
       url = card.at(".listing-thumb")[:href]
 
+      # DEBUG
       unless url
         raise "No URL in card?! card HTML: #{card}"
       end
@@ -43,6 +46,7 @@ class Scraper
       url.gsub!(" ", "+")
       url.gsub!('"', "%22")
 
+      # DEBUG
       unless card[:id]
         raise "No id for card?! card HTML: #{card}"
       end
