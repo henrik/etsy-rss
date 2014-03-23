@@ -31,28 +31,36 @@ class Scraper
   end
 
   def get_items
-    # "#primary > .listings" to exclude sponsored listings.
-    @doc.css("#primary > .listings .listing-card").map do |card|
-      next if card[:class].include?("house-ad")  # Skip unparsable ads.
+    # Multiple selectors as Etsy are in the middle of changing these.
+    cards = @doc.css("#search-results .listing-card, .listings .listing-card")
 
-      link = card.at("a.listing-thumb")
-      next unless link  # "No longer available" items without links sometimes appear.
+    cards.map { |card| get_card(card) }.compact
+  end
 
-      url = link[:href]
+  def get_card(card)
+    return if card[:class].include?("house-ad")  # Skip unparsable ads.
 
-      # Etsy doesn't properly escape the ga_facet parameter.
-      url.gsub!(" ", "+")
-      url.gsub!('"', "%22")
+    link = card.at("a.listing-thumb")
+    return unless link  # "No longer available" items without links sometimes appear.
 
-      {
-        id:    card[:id].gsub(/\D/, '').to_i,
-        url:   url,
-        title: card.at(".listing-thumb")[:title],
-        img:   card.at(".listing-thumb img")[:src].sub(/il_\d+x\d+/, 'il_570xN'),
-        time:  Time.now,  # Can't determine without loading each item page :/
-        price: card.at(".listing-price").text.strip
-      }
-    end
+    url = link[:href]
+
+    # Etsy doesn't properly escape the ga_facet parameter.
+    url.gsub!(" ", "+")
+    url.gsub!('"', "%22")
+
+    img = card.at(".image-wrap img, .listing-thumb img")[:src].sub(/il_\d+x\d+/, 'il_570xN')
+
+    {
+      id:    card[:id].gsub(/\D/, '').to_i,
+      url:   url,
+      title: card.at(".listing-thumb")[:title],
+      img:   img,
+      time:  Time.now,  # Can't determine without loading each item page :/
+      price: card.at(".listing-price").text.strip
+    }
+  rescue NoMethodError => e
+    raise "Got: #{e.name}: #{e.message} with card HTML: #{card}"
   end
 
   def url
