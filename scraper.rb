@@ -14,7 +14,7 @@ class Scraper
     {
       title: get_title,
       url:   url,
-      items: get_items
+      items: get_items,
     }
   rescue OpenURI::HTTPError => e
     if e.message == "404 Not Found"
@@ -57,7 +57,7 @@ class Scraper
       title: card.at(".listing-thumb")[:title],
       img:   img,
       time:  Time.now,  # Can't determine without loading each item page :/
-      price: card.at(".listing-price").text.strip
+      price: card.at(".listing-price").text.strip,
     }
   rescue NoMethodError => e
     raise "Got: #{e.name}: #{e.message} with card HTML: #{card}"
