@@ -1,6 +1,7 @@
 require "open-uri"
 require "time"
 require "nokogiri"
+require "open_uri_redirections"
 
 class Scraper
   class PageNotFound < StandardError; end

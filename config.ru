@@ -1,11 +1,26 @@
-require "rubygems"
-require "bundler"
+# FIXME: Figure out why we don't need to require these or bundler/setup.
+# Perhaps only skippable in dev? Something to do with rackup?
+#require "rubygems"
+#require "bundler"
+
+require "rack-canonical-host"
+require "sinatra"
+require "dalli"
+
+# Rewrites Heroku ENV names so Dalli just works.
+require "memcachier"
+
+require "rack-cache"
+require "raygun4ruby"
 
 env = (ENV["RACK_ENV"] || :development).to_sym
-Bundler.require(:default, env)
+if env == :production
+  require "unicorn"
+  require "newrelic_rpm"
+end
 
-require "./app"
-require "./raygun_rack"
+require_relative "app"
+require_relative "raygun_rack"
 
 use Rack::CanonicalHost, ENV["CANONICAL_HOST"] if ENV["CANONICAL_HOST"]
 
