@@ -1,3 +1,7 @@
+require "rubygems"
+require "bundler"
+Bundler.require :default, (ENV["RACK_ENV"] || "development").to_sym
+
 require "./app"
 require "./raygun_rack"
 
