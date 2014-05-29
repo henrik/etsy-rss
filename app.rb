@@ -1,8 +1,8 @@
-require_relative "scraper"
-require_relative "generator"
-
 require "slim"
 require "rdiscount"
+
+require_relative "scraper"
+require_relative "generator"
 
 set :views, -> { root }
 

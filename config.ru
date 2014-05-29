@@ -1,7 +1,5 @@
-# FIXME: Figure out why we don't need to require these or bundler/setup.
-# Perhaps only skippable in dev? Something to do with rackup?
-#require "rubygems"
-#require "bundler"
+require "rubygems"
+require "bundler/setup"
 
 require "rack-canonical-host"
 require "sinatra"
