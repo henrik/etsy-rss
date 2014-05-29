@@ -2,12 +2,8 @@ require "rubygems"
 require "bundler/setup"
 
 require "rack-canonical-host"
-require "sinatra"
 require "dalli"
-
-# Rewrites Heroku ENV names so Dalli just works.
-require "memcachier"
-
+require "memcachier"  # Rewrites Heroku ENV names so Dalli just works.
 require "rack-cache"
 require "raygun4ruby"
 
