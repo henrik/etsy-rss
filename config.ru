@@ -1,11 +1,11 @@
-require './app'
-require './raygun_rack'
+require "./app"
+require "./raygun_rack"
 
 use Rack::CanonicalHost, ENV["CANONICAL_HOST"] if ENV["CANONICAL_HOST"]
 
 # Defined in ENV on Heroku. To try locally, start memcached and uncomment:
 # ENV['MEMCACHE_SERVERS'] = "localhost"
-if memcache_servers = ENV['MEMCACHE_SERVERS']
+if memcache_servers = ENV["MEMCACHE_SERVERS"]
   use Rack::Cache,
     verbose: true,
     metastore:   "memcached://#{memcache_servers}",
@@ -13,7 +13,7 @@ if memcache_servers = ENV['MEMCACHE_SERVERS']
 end
 
 
-raygun_api_key = ENV['RAYGUN_API_KEY']
+raygun_api_key = ENV["RAYGUN_API_KEY"]
 
 Raygun.setup do |config|
   config.api_key = raygun_api_key
