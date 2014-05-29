@@ -9,7 +9,6 @@ require "raygun4ruby"
 
 env = (ENV["RACK_ENV"] || :development).to_sym
 if env == :production
-  require "unicorn"
   require "newrelic_rpm"
 end
 
