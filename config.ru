@@ -39,4 +39,4 @@ end
 use RaygunRack
 
 
-run Sinatra::Application
+run EtsyRSS
