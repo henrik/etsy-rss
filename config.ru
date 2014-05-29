@@ -7,11 +7,6 @@ require "dalli"
 require "memcachier"  # Rewrites Heroku ENV names so Dalli just works.
 require "raygun4ruby"
 
-env = (ENV["RACK_ENV"] || :development).to_sym
-if env == :production
-  require "newrelic_rpm"
-end
-
 require_relative "app"
 require_relative "raygun_rack"
 

@@ -8,6 +8,10 @@ require_relative "generator"
 class EtsyRSS < Sinatra::Application
   TITLE = "Etsy search RSS feeds"
 
+  configure :production do
+    require "newrelic_rpm"
+  end
+
   set :views, -> { root }
 
   get "/" do
