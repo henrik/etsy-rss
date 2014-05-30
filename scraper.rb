@@ -50,7 +50,9 @@ class Scraper
     url.gsub!(" ", "+")
     url.gsub!('"', "%22")
 
-    img = card.at(".image-wrap img, .listing-thumb img")[:"data-src"].sub(/il_\d+x\d+/, 'il_570xN').sub(%r{^//}, "http://")
+    img_element = card.at(".image-wrap img, .listing-thumb img")
+    src = img_element[:"data-src"] || img_element[:src]
+    img = src.sub(/il_\d+x\d+/, 'il_570xN').sub(%r{^//}, "http://")
 
     {
       id:    card[:id].gsub(/\D/, '').to_i,
