@@ -67,7 +67,7 @@ class Scraper
   end
 
   def url
-    "http://www.etsy.com#{path}"
+    "https://www.etsy.com#{path}"
   end
 
   def path
