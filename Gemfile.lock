@@ -15,7 +15,7 @@ GEM
     newrelic_rpm (3.3.3)
     nokogiri (1.5.2)
     open_uri_redirections (0.1.4)
-    rack (1.4.1)
+    rack (1.6.12)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-canonical-host (0.0.8)
