@@ -7,7 +7,7 @@ GEM
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
-    json (1.8.0)
+    json (2.3.1)
     kgio (2.6.0)
     memcachier (0.0.2)
     multi_json (1.7.9)
