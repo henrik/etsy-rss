@@ -1,5 +1,7 @@
 # Etsy search RSS feeds
 
+**Sorry, this tool is no longer maintained.** Changes to Etsy made it break in a way that is difficult to fix.
+
 Ruby script that provides Atom (RSS, kind of) feeds from Etsy searches:
 
 <http://etsy.nyh.name>
